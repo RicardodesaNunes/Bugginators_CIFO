@@ -1,5 +1,8 @@
-The project files are inside the 'files' folder.  
 We will explain what each file and folder contains.
+
+The project report is the file 'CIFO_report_Bugginators.pdf'.
+
+The project files are inside the 'files' folder, which contains:
 
 - 'charles' folder contains the python files with the selection, crossover, and mutation methods. It also includes the implementation of Individual and Population in the 'charles.py' file;
 
