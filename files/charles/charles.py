@@ -47,6 +47,11 @@ class Individual:
 
 
     def display(self):
+        """Implementation of displaying a sudoku Individual in a grid.
+
+        Returns:
+            print: grid with the Individual's representation.
+        """
         print()
         for i in range(81):
             if i in [0, 27, 54]:
@@ -64,6 +69,11 @@ class Individual:
 
 
     def evaluate_rows(self):
+        """Implementation of counting the unique numbers in each row of an Individual.
+
+        Returns:
+            int: sum of the number of unique digits in the rows of the Individual.
+        """
         fitness = 0
         for first in [0, 9, 18, 27, 36, 45, 54, 63, 72]:
             fitness += len(set(self.representation[first : first + 9]))
@@ -71,6 +81,11 @@ class Individual:
 
 
     def evaluate_cols(self):
+        """Implementation of counting the unique numbers in each columns of an Individual.
+
+        Returns:
+            int: sum of the number of unique digits in the columns of the Individual.
+        """
         fitness = 0
         indexes = [0, 9, 18, 27, 36, 45, 54, 63, 72]
         for plus in range(9):
@@ -80,6 +95,11 @@ class Individual:
 
 
     def evaluate_squares(self):
+        """Implementation of counting the unique numbers in each 3x3 square of an Individual.
+
+        Returns:
+            int: sum of the number of unique digits in the 3x3 squares of the Individual.
+        """
         fitness = 0
         indexes = [0, 1, 2, 9, 10, 11, 18, 19, 20]
         for plus_col in range(3):
@@ -90,11 +110,10 @@ class Individual:
 
 
     def evaluate(self):
-        """A simple objective function to calculate distances
-        for the TSP problem.
+        """A simple objective function to evaluate each Individual.
 
         Returns:
-            int: the total distance of the path
+            int: the sum of the number of unique digits in each row, column and 3x3 square
         """
         return self.evaluate_rows() + self.evaluate_cols() + self.evaluate_squares()
 
@@ -184,6 +203,11 @@ class Population:
         #     writer.writerow([super_elite.representation])
 
     def log(self, num_gens):
+        """Implementation of storing the best fitness value of each generation.
+
+        Returns:
+            csv: File with the best fitness value of each generation.
+        """
         best_indiv = max(self, key=attrgetter("fitness"))
         i=0
         my_file = Path(fr"{self.folder}{self.filename}.csv")
